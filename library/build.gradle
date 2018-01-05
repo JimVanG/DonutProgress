@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version = "1.2.4"
+version = "1.2.5"
 
 android {
     compileSdkVersion 27
@@ -13,15 +13,37 @@ android {
         versionName version
 
         vectorDrawables.useSupportLibrary = true
+
+        consumerProguardFiles 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
+    packagingOptions {
+        merge '**/LICENSE.txt'
+        merge '**/NOTICE.txt'
+        merge '**/notice.txt'
+        merge '**/license.txt'
+        merge '**/NOTICE'
+        merge '**/LICENSE'
+        merge '**/notice'
+        merge '**/license'
+        merge '**/LGPL2.1'
+        exclude '**/README'
+        exclude '**/README.*'
+        exclude '**/DEPENDENCIES'
+        exclude '**/DEPENDENCIES.**'
+        exclude '**/dependencies'
+        exclude '**/dependencies.**'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        preDexLibraries true
     }
 
     dependencies {
-        compile 'com.android.support:appcompat-v7:27.0.1'
+        compile 'com.android.support:appcompat-v7:27.0.2'
     }
 }
